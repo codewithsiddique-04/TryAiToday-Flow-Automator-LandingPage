@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prompt Guide — TryAIToday Automator</title>
+<meta name="description" content="How to write prompts for TryAIToday Automator — batching, reference images, @tag to reuse an image, and #name to name and chain images across a run." />
+<style>
+  :root{--bg:#101012;--bg2:#17171a;--bg3:#202024;--border:#34343a;--text:#e7e8ec;--muted:#8b8b94;--silver:#e7e8ec;--silver-bright:#f6f7f9;--tint:rgba(231,232,236,0.08);--radius:12px;--warn:#d9b488;--ok:#a0c2b4}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--text);font-size:16px;line-height:1.65;background:radial-gradient(130% 60% at 50% 0%,rgba(231,232,236,0.06),transparent 60%),var(--bg)}
+  a{color:var(--silver);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  header{position:sticky;top:0;z-index:10;background:rgba(16,16,18,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:1040px;margin:0 auto;padding:0 20px}
+  .brand{display:flex;flex-direction:column;line-height:1.15}
+  .brand b{font-size:16px;color:var(--silver-bright)}
+  .brand span{font-size:11px;color:var(--muted)}
+  .nav a.home{color:var(--muted);font-size:14px;font-weight:600}
+  .policy{padding:46px 0 30px}
+  .policy h1{font-size:32px;color:var(--silver-bright);letter-spacing:-.5px;margin-bottom:8px}
+  .policy .updated{color:var(--muted);font-size:13px;margin-bottom:26px}
+  .policy h2{color:var(--silver-bright);font-size:20px;margin:38px 0 10px}
+  .policy h3{color:var(--text);font-size:15px;margin:18px 0 6px}
+  .policy p{color:var(--muted);font-size:15px;margin-bottom:10px}
+  .policy ul{margin:6px 0 14px 0;list-style:none}
+  .policy li{color:var(--muted);font-size:15px;padding:5px 0 5px 24px;position:relative}
+  .policy li.dot::before{content:"•";position:absolute;left:6px;color:var(--silver)}
+  .policy li.yes::before{content:"✓";position:absolute;left:2px;color:var(--ok);font-weight:700}
+  .policy strong{color:var(--text)}
+  code{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:1px 6px;font-family:"Cascadia Code",Consolas,monospace;font-size:13px;color:var(--silver-bright)}
+  pre{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--silver);border-radius:var(--radius);padding:14px 16px;margin:10px 0 16px;overflow-x:auto}
+  pre code{background:none;border:none;padding:0;color:var(--text);font-size:13.5px;line-height:1.9;white-space:pre;display:block}
+  pre code .t{color:var(--silver-bright);font-weight:600}
+  .lead{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin:8px 0 24px}
+  .lead p{margin:0;font-size:15px}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+  .toc a{background:var(--bg3);border:1px solid var(--border);border-radius:999px;padding:6px 12px;font-size:13px;color:var(--muted)}
+  .toc a:hover{color:var(--text);text-decoration:none;border-color:var(--silver)}
+  .note{border-left:3px solid var(--warn);background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--warn);border-radius:var(--radius);padding:12px 15px;margin:14px 0}
+  .note p{margin:0;font-size:14px}
+  footer{border-top:1px solid var(--border);padding:26px 0;margin-top:24px}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;max-width:1040px;margin:0 auto;padding:0 20px}
+  .foot a{color:var(--muted);font-size:13px;margin-right:16px}
+  .foot a:hover{color:var(--text)}
+  .foot .c{color:var(--muted);font-size:13px}
+  .disc{color:var(--muted);font-size:12px;text-align:center;margin-top:16px;opacity:.8;max-width:1040px;margin-left:auto;margin-right:auto;padding:0 20px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><b>TryAIToday Automator&nbsp;✦</b><span>Bulk AI Image Gen</span></div>
+    <a class="home" href="index.html">← Back to home</a>
+  </div>
+</header>
+
+<main class="wrap policy">
+  <h1>Prompt Guide</h1>
+  <p class="updated">Everything you can put in a prompt — with copy-ready examples.</p>
+
+  <div class="lead">
+    <p>TryAIToday Automator runs a <strong>list</strong> of prompts on Google Flow in one batch. Beyond plain text, you can pull in <strong>reference images</strong>, reuse an image by name with <strong><code>@tag</code></strong>, and name a new image with <strong><code>#name</code></strong> so later prompts can reuse it — great for keeping the same character or product across a whole run.</p>
+  </div>
+
+  <div class="toc">
+    <a href="#basics">Basics</a>
+    <a href="#refs">Reference images</a>
+    <a href="#at">@tag — reuse an image</a>
+    <a href="#hash">#name — name an image</a>
+    <a href="#chain">Chaining (consistency)</a>
+    <a href="#tips">Tips</a>
+  </div>
+
+  <h2 id="basics">1. The basics</h2>
+  <p>Type or upload one prompt per block. <strong>Separate each prompt with a blank line</strong> — every block becomes one generation (or several, if you set images-per-prompt above 1).</p>
+  <pre><code>a cozy cabin in a snowy forest, warm light in the windows
+
+a neon city street at night, rain reflections, cinematic
+
+a studio portrait of an astronaut, soft key light</code></pre>
+  <p>Load a <code>.txt</code> file or paste directly, pick your model / aspect ratio / quality once in <strong>Settings</strong>, then press <strong>Start</strong>. Results preview live in the queue and auto-download into a per-run folder.</p>
+
+  <h2 id="refs">2. Reference images</h2>
+  <p>In the <strong>Reference Images</strong> section you can add <strong>Subject</strong> (who / what), <strong>Scene</strong> (where), and <strong>Style</strong> (look / mood) images — from your Flow <strong>Library</strong> or a quick <strong>Upload</strong>. They apply to <strong>every</strong> prompt in the batch.</p>
+  <ul>
+    <li class="dot">Up to <strong>5 per slot</strong>, and <strong>10 in total</strong> across Subject + Scene + Style combined.</li>
+    <li class="dot">Use these when the whole batch should share the same look or characters.</li>
+  </ul>
+
+  <h2 id="at">3. <code>@tag</code> — reuse an existing image by name</h2>
+  <p>If an image in your Flow project has a name, drop it into a prompt with <code>@</code> and it's pulled in as a reference for just that prompt:</p>
+  <pre><code><span class="t">@lina</span> standing in a misty forest, golden hour, wide shot</code></pre>
+  <ul>
+    <li class="dot"><code>@name</code> for single-word names; <code>@[two words]</code> for names with spaces.</li>
+    <li class="dot">The name is the image's name in Flow. An uploaded file like <code>lina.png</code> works as <code>@lina</code> (the extension is optional — <code>@[lina.png]</code> also works).</li>
+    <li class="dot">If several images share a name, the <strong>newest</strong> one — or the one you just made in this run — is used.</li>
+    <li class="dot">An <code>@tag</code> the extension can't find is simply left in the prompt as plain text.</li>
+  </ul>
+
+  <h2 id="hash">4. <code>#name</code> — name the image a prompt creates</h2>
+  <p>Add <code>#name</code> to a prompt to give the image it generates a name. The <code>#tag</code> isn't part of the picture — it just labels the result (and renames it in Flow) so you can reference it later with <code>@name</code>.</p>
+  <pre><code>a young woman, red hair, freckles, studio portrait <span class="t">#lina</span></code></pre>
+  <ul>
+    <li class="dot"><code>#name</code> or <code>#[two words]</code>, same as tags.</li>
+    <li class="dot">One name per prompt. When a prompt makes several images, the name is given to the first one.</li>
+  </ul>
+
+  <h2 id="chain">5. Chaining — the same character across a batch</h2>
+  <p>Combine the two: name a character once, then reuse it in the prompts that follow — all in a single run, no need to refresh anything.</p>
+  <pre><code>a young woman, red hair, freckles, studio portrait <span class="t">#lina</span>
+
+<span class="t">@lina</span> sitting in a sunlit cafe, candid, 35mm
+
+<span class="t">@lina</span> hiking a mountain trail at sunrise, wide cinematic shot
+
+<span class="t">@lina</span> in a spacesuit on a red-rock planet, dramatic light</code></pre>
+  <p>The first prompt creates and names <code>lina</code>; every prompt after it reuses that exact image as a reference — so it's recognizably the same person throughout.</p>
+  <div class="note"><p>You can mix both in one line — e.g. <code>#hero @city walking out of the station at dusk</code> names the new image <code>hero</code> while referencing your <code>city</code> image.</p></div>
+
+  <h2 id="tips">6. Tips</h2>
+  <ul>
+    <li class="yes">Keep each prompt on its own block, separated by a blank line.</li>
+    <li class="yes">Set Subject / Scene / Style references for a look that applies to the <em>whole</em> batch; use <code>@tag</code> when only <em>one</em> prompt needs a specific image.</li>
+    <li class="yes">Name early: put <code>#name</code> on the prompt that establishes a character or product, then <code>@name</code> in the rest.</li>
+    <li class="yes">Names are case-insensitive and can use letters, numbers, <code>-</code> and <code>_</code> (e.g. <code>@product_01</code>).</li>
+    <li class="yes">Click any finished thumbnail in the queue to preview it full-size right away.</li>
+  </ul>
+  <p style="margin-top:22px">Questions or ideas? Join our <a href="https://discord.gg/rk3wzgrMT">Discord</a> or email <a href="mailto:codewithsiddique@gmail.com">codewithsiddique@gmail.com</a>.</p>
+</main>
+
+<footer>
+  <div class="foot">
+    <div>
+      <a href="index.html">Home</a>
+      <a href="guide.html">Prompt Guide</a>
+      <a href="refund.html">Refund</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="mailto:codewithsiddique@gmail.com">Contact</a>
+    </div>
+    <div class="c">© 2026 TryAIToday Automator</div>
+  </div>
+  <div class="disc">Not affiliated with, endorsed by, or sponsored by Google. "Google Flow" is a trademark of Google LLC.</div>
+</footer>
+
+</body>
+</html>
