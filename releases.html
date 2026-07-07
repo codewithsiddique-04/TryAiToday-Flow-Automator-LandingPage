@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Releases — TryAIToday Automator</title>
+<meta name="description" content="What's new in TryAIToday Automator — new features, improvements, and fixes in each release." />
+<style>
+  :root{--bg:#101012;--bg2:#17171a;--bg3:#202024;--border:#34343a;--text:#e7e8ec;--muted:#8b8b94;--silver:#e7e8ec;--silver-bright:#f6f7f9;--tint:rgba(231,232,236,0.08);--radius:12px;--warn:#d9b488;--ok:#a0c2b4}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--text);font-size:16px;line-height:1.65;background:radial-gradient(130% 60% at 50% 0%,rgba(231,232,236,0.06),transparent 60%),var(--bg)}
+  a{color:var(--silver);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  header{position:sticky;top:0;z-index:10;background:rgba(16,16,18,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:1040px;margin:0 auto;padding:0 20px}
+  .brand{display:flex;flex-direction:column;line-height:1.15}
+  .brand b{font-size:16px;color:var(--silver-bright)}
+  .brand span{font-size:11px;color:var(--muted)}
+  .nav a.home{color:var(--muted);font-size:14px;font-weight:600}
+  .policy{padding:46px 0 30px}
+  .policy h1{font-size:32px;color:var(--silver-bright);letter-spacing:-.5px;margin-bottom:8px}
+  .policy .updated{color:var(--muted);font-size:13px;margin-bottom:26px}
+  .rel{border:1px solid var(--border);background:var(--bg2);border-radius:var(--radius);padding:20px 22px;margin:0 0 22px}
+  .rel-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+  .rel-head h2{color:var(--silver-bright);font-size:21px}
+  .rel-head .tag{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#161618;background:linear-gradient(180deg,var(--silver-bright),var(--silver));border-radius:999px;padding:3px 10px}
+  .rel-head .date{color:var(--muted);font-size:13px}
+  .rel h3{font-size:13px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+  .rel ul{list-style:none;margin:0}
+  .rel li{position:relative;padding:6px 0 6px 26px;color:var(--muted);font-size:15px;line-height:1.55}
+  .rel li b{color:var(--text)}
+  .rel li code{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:1px 6px;font-family:"Cascadia Code",Consolas,monospace;font-size:12.5px;color:var(--silver-bright)}
+  .rel li.new::before{content:"✦";position:absolute;left:2px;top:6px;color:var(--silver-bright)}
+  .rel li.fix::before{content:"✓";position:absolute;left:3px;top:6px;color:var(--ok);font-weight:700}
+  .intro{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin:8px 0 24px}
+  .intro p{margin:0;font-size:15px;color:var(--muted)}
+  .intro a{color:var(--silver)}
+  footer{border-top:1px solid var(--border);padding:26px 0;margin-top:24px}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;max-width:1040px;margin:0 auto;padding:0 20px}
+  .foot a{color:var(--muted);font-size:13px;margin-right:16px}
+  .foot a:hover{color:var(--text)}
+  .foot .c{color:var(--muted);font-size:13px}
+  .disc{color:var(--muted);font-size:12px;text-align:center;margin-top:16px;opacity:.8;max-width:1040px;margin-left:auto;margin-right:auto;padding:0 20px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><b>TryAIToday Automator&nbsp;✦</b><span>Bulk AI Image Gen</span></div>
+    <a class="home" href="index.html">← Back to home</a>
+  </div>
+</header>
+
+<main class="wrap policy">
+  <h1>Releases</h1>
+  <p class="updated">What's new, improved, and fixed in TryAIToday Automator.</p>
+
+  <div class="intro">
+    <p>New to reference images and naming? See the <a href="guide.html">Prompt Guide</a> for copy-ready examples of <code>@tag</code> and <code>#name</code>.</p>
+  </div>
+
+  <section class="rel">
+    <div class="rel-head">
+      <h2>Version 0.2.0</h2>
+      <span class="tag">Latest</span>
+    </div>
+
+    <h3>New</h3>
+    <ul>
+      <li class="new"><b>Reference an image by name</b> — write <code>@name</code> in a prompt to pull that image in as a reference. Works with images named in Flow, uploaded this session, or made earlier in the same batch. Multi-word names use <code>@[name with spaces]</code>.</li>
+      <li class="new"><b>Name your results with <code>#name</code></b> — add <code>#name</code> to a prompt to name the image it creates, then reuse it later with <code>@name</code>. Perfect for keeping the same character or product consistent across a whole batch.</li>
+      <li class="new"><b>Retry any job</b> — regenerate a finished, failed, or stopped job as a new version (v2, v3…) with one click — even while the queue is still running (it jumps ahead and runs next).</li>
+      <li class="new"><b>Subqueues</b> — when you retry a job whose result other jobs reference, start a subqueue to re-run that whole dependent chain in its own tab and <code>subqueue_N</code> folder, so every image stays in sync with the updated reference. Run several at once; all queues process round-robin.</li>
+      <li class="new"><b>Rerun, resume &amp; regenerate</b> — press Start on a finished batch to regenerate every image again as new versions in the same batch; on a stopped batch, choose to resume the remaining jobs (keeping what's already done) or start the whole batch over. Resumed jobs pick up any references you retried in the meantime.</li>
+      <li class="new"><b>Reference previews in the queue</b> — every job shows a thumbnail of each <code>@tag</code> it uses before you start. A reference that a later prompt creates shows a "step N" chip that fills in with the real image once that step runs.</li>
+      <li class="new"><b>Click to preview</b> — click any thumbnail (a generated result or a reference chip) to view it full-size instantly, no waiting for a refresh.</li>
+      <li class="new"><b>Edit a prompt</b> — a ✎ button opens an editor to fix a wrong <code>@name</code> or a typo from a bulk load — before you start a run, or on a finished job right before retrying it.</li>
+      <li class="new"><b>Product tour</b> — a quick first-run walkthrough of the whole panel, replayable anytime from Account.</li>
+      <li class="new"><b>New model: Nano Banana Lite</b> — added alongside Nano Banana 2 and Nano Banana Pro.</li>
+      <li class="new"><b>More reference slots</b> — Scene and Style now hold up to 5 images each (10 total across Subject + Scene + Style combined).</li>
+      <li class="new"><b>Fresh session between runs</b> — the Flow tab refreshes automatically when a run ends or is stopped, so the next batch starts clean.</li>
+      <li class="new"><b>In-app Prompt Guide &amp; support</b> — a Prompt Guide button next to your prompts, plus a direct link to our Discord community for help.</li>
+    </ul>
+
+    <h3>Improved &amp; fixed</h3>
+    <ul>
+      <li class="fix"><b>Expired sign-in</b> no longer shows a broken "Trial — / —" state — it takes you straight back to sign in.</li>
+      <li class="fix"><b>"Unusual activity" recovery</b> — a blocked generation is now auto-retried with a fresh security check, and a built-in guide walks you through clearing Google's block if it persists.</li>
+      <li class="fix"><b>Clearer errors</b> — daily-limit, rate-limit, and expired-session cases now show distinct, actionable messages.</li>
+      <li class="fix"><b>Smoother queue</b> — reference thumbnails no longer flicker when you press Start.</li>
+      <li class="fix"><b>Trashed references</b> — images you move to trash in Flow are no longer offered or used as <code>@name</code> references.</li>
+      <li class="fix"><b>Retry downloads</b> — retrying a job on a finished or stopped queue now saves into the batch folder instead of the Downloads root.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot">
+    <div>
+      <a href="index.html">Home</a>
+      <a href="guide.html">Prompt Guide</a>
+      <a href="releases.html">Releases</a>
+      <a href="refund.html">Refund</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+    <div class="c">© 2026 TryAIToday Automator</div>
+  </div>
+  <div class="disc">Not affiliated with, endorsed by, or sponsored by Google. "Google Flow" is a trademark of Google LLC.</div>
+</footer>
+
+</body>
+</html>
