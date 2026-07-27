@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Prompt Guide — TryAIToday Flow Automator</title>
-<meta name="description" content="How to write prompts for TryAIToday Flow Automator — batching, reference images, @tag to reuse an image, and #name to name and chain images across a run." />
+<meta name="description" content="How to write prompts for TryAIToday Flow Automator — batching images and videos, reference images, @tag to reuse an image, #name to chain images, and video modes with @start / @end frame tags." />
 <style>
   :root{--bg:#101012;--bg2:#17171a;--bg3:#202024;--border:#34343a;--text:#e7e8ec;--muted:#8b8b94;--silver:#e7e8ec;--silver-bright:#f6f7f9;--tint:rgba(231,232,236,0.08);--radius:12px;--warn:#d9b488;--ok:#a0c2b4}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -53,7 +53,7 @@
 
 <header>
   <div class="nav">
-    <div class="brand"><b>TryAIToday Flow Automator&nbsp;✦</b><span>Bulk AI Image Gen</span></div>
+    <div class="brand"><b>TryAIToday Flow Automator&nbsp;✦</b><span>Bulk AI Image &amp; Video Gen</span></div>
     <a class="home" href="index.html">← Back to home</a>
   </div>
 </header>
@@ -63,8 +63,10 @@
   <p class="updated">Everything you can put in a prompt — with copy-ready examples.</p>
 
   <div class="lead">
-    <p>TryAIToday Flow Automator runs a <strong>list</strong> of prompts on Google Flow in one batch. Beyond plain text, you can pull in <strong>reference images</strong>, reuse an image by name with <strong><code>@tag</code></strong>, and name a new image with <strong><code>#name</code></strong> so later prompts can reuse it — great for keeping the same character or product across a whole run.</p>
+    <p>TryAIToday Flow Automator runs a <strong>list</strong> of prompts on Google Flow in one batch — for <strong>images</strong> or <strong>videos</strong>. Beyond plain text, you can pull in <strong>reference images</strong>, reuse an image by name with <strong><code>@tag</code></strong>, name a new image with <strong><code>#name</code></strong> so later prompts can reuse it, and — in the Video tab — drive each clip with <strong><code>@start</code></strong> / <strong><code>@end</code></strong> frame tags.</p>
   </div>
+
+  <div class="note"><p><strong>Two tabs, same idea.</strong> Switch between <strong>Image</strong> and <strong>Video</strong> at the top of the side panel. Each keeps its own prompts, queue and history, so you can set up one without disturbing the other. Sections 1–5 below apply to both; section 6 covers what's specific to video.</p></div>
 
   <div class="toc">
     <a href="#basics">Basics</a>
@@ -72,6 +74,7 @@
     <a href="#at">@tag — reuse an image</a>
     <a href="#hash">#name — name an image</a>
     <a href="#chain">Chaining (consistency)</a>
+    <a href="#video">Video prompts</a>
     <a href="#tips">Tips</a>
   </div>
 
@@ -121,13 +124,53 @@ a studio portrait of an astronaut, soft key light</code></pre>
   <p>The first prompt creates and names <code>lina</code>; every prompt after it reuses that exact image as a reference — so it's recognizably the same person throughout.</p>
   <div class="note"><p>You can mix both in one line — e.g. <code>#hero @city walking out of the station at dusk</code> names the new image <code>hero</code> while referencing your <code>city</code> image.</p></div>
 
-  <h2 id="tips">6. Tips</h2>
+  <h2 id="video">6. Video prompts</h2>
+  <p>Switch to the <strong>Video</strong> tab to batch-generate clips the same way you batch images — one prompt per block, separated by a blank line. Pick your <strong>model</strong>, <strong>aspect ratio</strong>, <strong>videos-per-prompt</strong> and <strong>duration</strong> once in <strong>Settings</strong>, choose a <strong>video mode</strong>, then press <strong>Start</strong>.</p>
+
+  <h3>Video modes</h3>
+  <ul>
+    <li class="dot"><strong>Text</strong> — prompt only; the model creates the clip from your words.</li>
+    <li class="dot"><strong>Start frame</strong> — the clip begins from an image you choose and animates forward.</li>
+    <li class="dot"><strong>Start + End frame</strong> — you give the first and last frame; Flow interpolates the motion between them.</li>
+    <li class="dot"><strong>Reference</strong> — up to <strong>4</strong> reference images guide the subject / look, and the clip is generated to match.</li>
+  </ul>
+
+  <h3>Frame tags — <code>@start</code>, <code>@end</code>, and references</h3>
+  <p>Just like <code>@tag</code> for images, you can name the exact frames a single video should use, right inside its prompt. Which tags are available depends on the mode:</p>
+  <ul>
+    <li class="dot"><strong>Start frame:</strong> <code>@start:name</code> sets that prompt's opening frame.</li>
+    <li class="dot"><strong>Start + End frame:</strong> <code>@start:name</code> and <code>@end:name</code> set the first and last frames.</li>
+    <li class="dot"><strong>Reference:</strong> <code>@name</code> (plain, up to 4) pulls images in as references — same syntax as the Image tab.</li>
+  </ul>
+  <pre><code><span class="t">@start:sunrise</span> the camera pushes slowly through the misty valley, cinematic
+
+<span class="t">@start:door_closed</span> <span class="t">@end:door_open</span> the old wooden door swings open into daylight</code></pre>
+  <ul>
+    <li class="dot">Single-word names use <code>@start:name</code>; names with spaces use <code>@start:[my hero]</code>.</li>
+    <li class="dot">Names resolve to a Flow image exactly like <code>@tag</code> / <code>#name</code> in the Image tab — so an image you named earlier (or uploaded) can become a start or end frame.</li>
+    <li class="dot">Tags are removed from the text sent to the model, and shown as chips on each queue row so you can see which frames a clip will use.</li>
+  </ul>
+
+  <h3>Different frames for each prompt</h3>
+  <p>Prefer picking visually? Open <strong>Different for each prompt</strong> to assign a start / end / reference image to every prompt from a grid — no tags needed. Anything you set there fills in for prompts that don't already carry a tag.</p>
+  <div class="note"><p><strong>Precedence:</strong> an <code>@tag</code> in the prompt wins, then a per-prompt assignment, then the shared frame set in Settings. So you can set one default and override just the prompts that need something different.</p></div>
+
+  <h3>Models &amp; durations</h3>
+  <ul>
+    <li class="dot"><strong>Omni Flash</strong> — fastest; supports <strong>4 / 6 / 8 / 10s</strong> and Text, Start-frame, and Reference modes.</li>
+    <li class="dot"><strong>Veo 3.1 Lite / Fast / Quality</strong> — higher quality at <strong>8s</strong>; Lite and Fast support all modes, Quality is best for Text and frame modes.</li>
+    <li class="dot">The panel auto-corrects impossible combinations (for example, resetting the duration to 8s for Veo models) and tells you why.</li>
+  </ul>
+  <p>Finished clips preview in the queue and auto-download into their own <strong>Videos</strong> run folder, separate from your images.</p>
+
+  <h2 id="tips">7. Tips</h2>
   <ul>
     <li class="yes">Keep each prompt on its own block, separated by a blank line.</li>
     <li class="yes">Set Subject / Scene / Style references for a look that applies to the <em>whole</em> batch; use <code>@tag</code> when only <em>one</em> prompt needs a specific image.</li>
     <li class="yes">Name early: put <code>#name</code> on the prompt that establishes a character or product, then <code>@name</code> in the rest.</li>
     <li class="yes">Names are case-insensitive and can use letters, numbers, <code>-</code> and <code>_</code> (e.g. <code>@product_01</code>).</li>
     <li class="yes">Click any finished thumbnail in the queue to preview it full-size right away.</li>
+    <li class="yes">For video, name an image with <code>#name</code> in the Image tab first, then use it as <code>@start:name</code> or <code>@end:name</code> over in the Video tab.</li>
   </ul>
   <p style="margin-top:22px">Questions or ideas? Join our <a href="https://discord.gg/rk3wzgrMT">Discord</a> or email <a href="mailto:codewithsiddique@gmail.com">codewithsiddique@gmail.com</a>.</p>
 </main>
