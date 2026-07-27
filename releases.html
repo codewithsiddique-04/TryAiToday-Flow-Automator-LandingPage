@@ -64,8 +64,32 @@
 
   <section class="rel">
     <div class="rel-head">
-      <h2>Version 0.2.4</h2>
+      <h2>Version 0.3.0</h2>
       <span class="tag">Latest</span>
+    </div>
+
+    <h3>New</h3>
+    <ul>
+      <li class="new"><b>Video generation is here</b> — batch-generate videos on Google Flow the same way you batch images. Choose <b>Text</b>, <b>Start frame</b>, <b>Start + End frame</b>, or <b>Reference</b> mode, set your model, aspect ratio, duration and videos-per-prompt, and let it run.</li>
+      <li class="new"><b>Separate Image &amp; Video tabs</b> — switch between Image and Video at the top of the panel. Each keeps its own prompts, queue, and history, so setting up one never disturbs the other.</li>
+      <li class="new"><b>Per-clip frame tags</b> — name the exact frames a single video should use, right in its prompt: <code>@start:name</code>, <code>@end:name</code>, and <code>@name</code> for references. Multi-word names use brackets, e.g. <code>@start:[my hero]</code>.</li>
+      <li class="new"><b>Different frames for each prompt</b> — assign a start / end / reference image to every prompt from a grid, no tags needed. A tag in the prompt wins, then a per-prompt assignment, then the shared frames in Settings.</li>
+      <li class="new"><b>Per-prompt image references</b> — in the Image tab you can now add up to 4 reference images to a single prompt, over and above your global Subject / Scene / Style set.</li>
+      <li class="new"><b>Reference Library with your generated images</b> — pick references from your Flow Library, including images you generated in this run, and upload new ones from the same place.</li>
+      <li class="new"><b>Organized downloads</b> — videos save into their own run folder, kept separate from your images.</li>
+    </ul>
+
+    <h3>Improved &amp; fixed</h3>
+    <ul>
+      <li class="fix"><b>Free daily limit counts every generation</b> — video generations now draw from the same daily allowance as images.</li>
+      <li class="fix"><b>Retry does the right thing per mode</b> — retrying a video job regenerates a video (not an image), and each mode keeps its own queue and history.</li>
+      <li class="fix"><b>Cleaner navigation</b> — settings moved into a dialog, and image/video controls now share one consistent layout and wording.</li>
+    </ul>
+  </section>
+
+  <section class="rel">
+    <div class="rel-head">
+      <h2>Version 0.2.4</h2>
     </div>
 
     <h3>New</h3>
