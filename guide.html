@@ -87,6 +87,13 @@ a neon city street at night, rain reflections, cinematic
 a studio portrait of an astronaut, soft key light</code></pre>
   <p>Load a <code>.txt</code> file or paste directly, pick your model / aspect ratio / quality once in <strong>Settings</strong>, then press <strong>Start</strong>. Results preview live in the queue and auto-download into a per-run folder.</p>
 
+  <h3>JSON prompts are allowed too</h3>
+  <p>Prefer <strong>structured</strong> prompts? You can paste <strong>JSON</strong> straight into the prompt box — it's accepted as your prompt and sent to Flow as-is. Handy when you write prompts as objects (subject, scene, style, camera…) or export them from another tool.</p>
+  <pre><code>{ "subject": "a red fox", "scene": "snowy pine forest at dawn", "style": "cinematic, 35mm, shallow depth of field" }
+
+{ "subject": "a neon city street", "scene": "night, after rain", "style": "moody, reflective, wide shot" }</code></pre>
+  <p>Each JSON block counts as <strong>one</strong> prompt — <strong>separate multiple prompts with a blank line</strong>, exactly like plain-text ones. <code>@tag</code> and <code>#name</code> still work inside a JSON prompt.</p>
+
   <h2 id="refs">2. Reference images</h2>
   <p>In the <strong>Reference Images</strong> section you can add <strong>Subject</strong> (who / what), <strong>Scene</strong> (where), and <strong>Style</strong> (look / mood) images — from your Flow <strong>Library</strong> or a quick <strong>Upload</strong>. They apply to <strong>every</strong> prompt in the batch.</p>
   <ul>
