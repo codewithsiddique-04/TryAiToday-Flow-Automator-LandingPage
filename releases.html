@@ -64,8 +64,31 @@
 
   <section class="rel">
     <div class="rel-head">
-      <h2>Version 1.3.0</h2>
+      <h2>Version 1.6.0</h2>
       <span class="tag">Latest</span>
+    </div>
+
+    <h3>New</h3>
+    <ul>
+      <li class="new"><b>Works with the new Google Flow</b> — Google rebuilt the Flow website, which had broken generation. The extension now runs on the updated <b>flow.google.com</b>, with <b>image and video generation restored</b> — including upscales and reference uploads.</li>
+      <li class="new"><b>Multiple reference images in one prompt</b> — use several <code>@tags</code> in a single prompt (e.g. <code>@alex shaking hands with @sam</code>) and each reference is placed in the right spot, so multi-character and multi-product scenes come out correct.</li>
+      <li class="new"><b>Keeps generating in background windows</b> — start a batch, switch to another window or Chrome profile, and it keeps running at full speed instead of pausing. Great for running several projects side by side.</li>
+      <li class="new"><b>In-app announcements</b> — important updates now appear as a banner inside the extension, so you'll know right away if something needs your attention.</li>
+      <li class="new"><b>Version shown in the header</b> — the current version is displayed next to the title.</li>
+    </ul>
+
+    <h3>Improved &amp; fixed</h3>
+    <ul>
+      <li class="fix"><b>Instant Stop</b> — pressing <b>Stop</b> now halts the batch immediately instead of taking several seconds.</li>
+      <li class="fix"><b>Cleaner daily-limit handling</b> — when a model hits its daily limit, the batch stops cleanly and keeps everything already done. Switch to another model and press <b>Start → Resume</b> to continue from where it stopped.</li>
+      <li class="fix"><b>Clear guidance on "unusual activity"</b> — if Google flags your session after heavy use, the extension now shows a step-by-step guide to clear it and resume, instead of silently stalling.</li>
+      <li class="fix"><b>Blocked prompts are skipped, not retried</b> — a prompt rejected by Google's content policy now shows a clear message and is skipped, so it no longer holds up the batch.</li>
+    </ul>
+  </section>
+
+  <section class="rel">
+    <div class="rel-head">
+      <h2>Version 1.3.0</h2>
     </div>
 
     <h3>New</h3>
