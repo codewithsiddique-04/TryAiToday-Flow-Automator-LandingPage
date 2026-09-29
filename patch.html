@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Patched build — TryAIToday Flow Automator</title>
+<meta name="description" content="Google Flow changed how reference-image previews load, which can make previews look blank. Download the patched build of TryAIToday Flow Automator that fixes it." />
+<style>
+  :root{--bg:#101012;--bg2:#17171a;--bg3:#202024;--border:#34343a;--text:#e7e8ec;--muted:#8b8b94;--silver:#e7e8ec;--silver-bright:#f6f7f9;--tint:rgba(231,232,236,0.08);--radius:12px;--warn:#d9b488;--ok:#a0c2b4}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;color:var(--text);font-size:16px;line-height:1.65;background:radial-gradient(130% 60% at 50% 0%,rgba(231,232,236,0.06),transparent 60%),var(--bg)}
+  a{color:var(--silver);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  header{position:sticky;top:0;z-index:10;background:rgba(16,16,18,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:62px;max-width:1040px;margin:0 auto;padding:0 20px}
+  .brand{display:flex;flex-direction:column;line-height:1.15}
+  .brand b{font-size:16px;color:var(--silver-bright)}
+  .brand span{font-size:11px;color:var(--muted)}
+  .nav a.home{color:var(--muted);font-size:14px;font-weight:600}
+  .policy{padding:46px 0 30px}
+  .policy h1{font-size:32px;color:var(--silver-bright);letter-spacing:-.5px;margin-bottom:8px}
+  .policy .updated{color:var(--muted);font-size:13px;margin-bottom:26px}
+  .card{border:1px solid var(--border);background:var(--bg2);border-radius:var(--radius);padding:22px 24px;margin:0 0 22px}
+  .card h2{color:var(--silver-bright);font-size:20px;margin-bottom:10px}
+  .card p{color:var(--muted);font-size:15px;margin:0 0 10px}
+  .card p b{color:var(--text)}
+  .banner{border:1px solid var(--warn);background:linear-gradient(180deg,rgba(217,180,136,0.10),rgba(217,180,136,0.03));border-radius:var(--radius);padding:16px 18px;margin:0 0 22px;display:flex;gap:12px;align-items:flex-start}
+  .banner .ic{font-size:20px;line-height:1.2;color:var(--warn)}
+  .banner div p{margin:0;color:var(--text);font-size:15px}
+  .banner div p span{color:var(--muted);display:block;margin-top:4px;font-size:13.5px}
+  .dl{text-align:center;padding:8px 0 4px}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,var(--silver-bright),var(--silver));color:#161618;font-weight:700;font-size:16px;border:none;border-radius:999px;padding:14px 30px;cursor:pointer;text-decoration:none;letter-spacing:.01em}
+  .btn:hover{text-decoration:none;filter:brightness(1.04)}
+  .btn svg{width:18px;height:18px}
+  .dl .meta{color:var(--muted);font-size:12.5px;margin-top:10px}
+  ol.steps{list-style:none;counter-reset:s;margin:6px 0 0}
+  ol.steps li{position:relative;padding:8px 0 8px 40px;color:var(--muted);font-size:15px;line-height:1.55;border-bottom:1px solid rgba(52,52,58,.5)}
+  ol.steps li:last-child{border-bottom:none}
+  ol.steps li b{color:var(--text)}
+  ol.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:8px;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:var(--bg3);border:1px solid var(--border);color:var(--silver-bright);font-size:13px;font-weight:700}
+  code{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:1px 7px;font-family:"Cascadia Code",Consolas,monospace;font-size:12.5px;color:var(--silver-bright)}
+  .tip{color:var(--muted);font-size:14px;margin-top:2px}
+  .tip b{color:var(--ok)}
+  footer{border-top:1px solid var(--border);padding:26px 0;margin-top:24px}
+  .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;max-width:1040px;margin:0 auto;padding:0 20px}
+  .foot a{color:var(--muted);font-size:13px;margin-right:16px}
+  .foot a:hover{color:var(--text)}
+  .foot .c{color:var(--muted);font-size:13px}
+  .disc{color:var(--muted);font-size:12px;text-align:center;margin-top:16px;opacity:.8;max-width:1040px;margin-left:auto;margin-right:auto;padding:0 20px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><b>TryAIToday Flow Automator&nbsp;✦</b><span>Bulk AI Image &amp; Video Gen</span></div>
+    <a class="home" href="index.html">← Back to home</a>
+  </div>
+</header>
+
+<main class="wrap policy">
+  <h1>Patched build — image preview fix</h1>
+  <p class="updated">Version 1.6.2 · fixes broken reference-image previews</p>
+
+  <div class="banner">
+    <div class="ic">⚠️</div>
+    <div>
+      <p>Google Flow made a small change to how reference-image previews load.
+        <span>Because of it, reference thumbnails in the Library and on your job rows can appear blank or broken in the current version. This patched build fixes it — generation itself was never affected.</span></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Download the fix</h2>
+    <p>This is the same extension with the preview fix applied. It keeps the <b>same extension ID</b>, so your sign-in and license carry over — nothing to re-activate.</p>
+    <div class="dl">
+      <a class="btn" href="downloads/TryAIToday-Flow-Automator-v1.6.2-unpacked.zip" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        Download v1.6.2 (.zip)
+      </a>
+      <div class="meta">~330 KB · Chrome / Edge · unzip before installing</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Install it (2 minutes)</h2>
+    <ol class="steps">
+      <li><b>Unzip</b> the downloaded file. You'll get a folder named <code>TryAIToday-Flow-Automator</code>.</li>
+      <li>Open <code>chrome://extensions</code> in your browser.</li>
+      <li>Turn on <b>Developer mode</b> (top-right toggle).</li>
+      <li>Click <b>Load unpacked</b> and select the unzipped <code>TryAIToday-Flow-Automator</code> folder.</li>
+      <li>Open the side panel — it now runs <b>v1.6.2</b> with previews working. You can remove the old Web Store copy if you like; your account stays signed in.</li>
+    </ol>
+    <p class="tip" style="margin-top:14px"><b>Tip:</b> keep the unzipped folder somewhere safe — deleting it removes the extension.</p>
+  </div>
+
+  <div class="card">
+    <h2>Prefer to wait for the Web Store update?</h2>
+    <p>That's fine — the same fix is being submitted to the Chrome Web Store and will arrive automatically once Google approves it. This build just lets you get it today.</p>
+    <p style="margin:0">You can reopen this message inside the extension anytime from <b>Settings → “Clear cache &amp; fix broken actions.”</b></p>
+  </div>
+</main>
+
+<footer>
+  <div class="foot">
+    <div>
+      <a href="index.html">Home</a>
+      <a href="guide.html">Prompt Guide</a>
+      <a href="releases.html">Releases</a>
+      <a href="patch.html">Patch</a>
+      <a href="refund.html">Refund</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+    <div class="c">© 2026 TryAIToday Flow Automator</div>
+  </div>
+  <div class="disc">Not affiliated with, endorsed by, or sponsored by Google. "Google Flow" is a trademark of Google LLC.</div>
+</footer>
+
+</body>
+</html>
