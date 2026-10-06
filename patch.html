@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Patched build — TryAIToday Flow Automator</title>
-<meta name="description" content="Google Flow changed how reference-image previews load, which can make previews look blank. Download the patched build of TryAIToday Flow Automator that fixes it." />
+<meta name="description" content="Google Flow renamed the Nano Banana 2 model, which can make generations fail in the current version. Download the patched build of TryAIToday Flow Automator that fixes it." />
 <style>
   :root{--bg:#101012;--bg2:#17171a;--bg3:#202024;--border:#34343a;--text:#e7e8ec;--muted:#8b8b94;--silver:#e7e8ec;--silver-bright:#f6f7f9;--tint:rgba(231,232,236,0.08);--radius:12px;--warn:#d9b488;--ok:#a0c2b4}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -61,24 +61,24 @@
 </header>
 
 <main class="wrap policy">
-  <h1>Patched build — image preview fix</h1>
-  <p class="updated">Version 1.6.2 · fixes broken reference-image previews</p>
+  <h1>Patched build — Nano Banana 2 fix</h1>
+  <p class="updated">Version 1.6.4 · fixes failing Nano Banana 2 generations</p>
 
   <div class="banner">
     <div class="ic">⚠️</div>
     <div>
-      <p>Google Flow made a small change to how reference-image previews load.
-        <span>Because of it, reference thumbnails in the Library and on your job rows can appear blank or broken in the current version. This patched build fixes it — generation itself was never affected.</span></p>
+      <p>Google Flow renamed the <b>Nano Banana 2</b> model.
+        <span>Because of it, Nano Banana 2 generations can fail in the current version (the model is no longer found). This patched build updates the model and fixes it. It also includes recent fixes: 2K-upscale watermark handling, history ZIP downloads for older runs, and video result naming.</span></p>
     </div>
   </div>
 
   <div class="card">
     <h2>Download the fix</h2>
-    <p>This is the same extension with the preview fix applied. It keeps the <b>same extension ID</b>, so your sign-in and license carry over — nothing to re-activate.</p>
+    <p>This is the same extension with the fix applied. It keeps the <b>same extension ID</b>, so your sign-in and license carry over — nothing to re-activate.</p>
     <div class="dl">
-      <a class="btn" href="downloads/TryAIToday-Flow-Automator-v1.6.2-unpacked.zip" download>
+      <a class="btn" href="downloads/TryAIToday-Flow-Automator-v1.6.4-unpacked.zip" download>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-        Download v1.6.2 (.zip)
+        Download v1.6.4 (.zip)
       </a>
       <div class="meta">~330 KB · Chrome / Edge · unzip before installing</div>
     </div>
@@ -91,7 +91,7 @@
       <li>Open <code>chrome://extensions</code> in your browser.</li>
       <li>Turn on <b>Developer mode</b> (top-right toggle).</li>
       <li>Click <b>Load unpacked</b> and select the unzipped <code>TryAIToday-Flow-Automator</code> folder.</li>
-      <li>Open the side panel — it now runs <b>v1.6.2</b> with previews working. You can remove the old Web Store copy if you like; your account stays signed in.</li>
+      <li>Open the side panel — it now runs <b>v1.6.4</b> with Nano Banana 2 working. You can remove the old Web Store copy if you like; your account stays signed in.</li>
     </ol>
     <p class="tip" style="margin-top:14px"><b>Tip:</b> keep the unzipped folder somewhere safe — deleting it removes the extension.</p>
   </div>
